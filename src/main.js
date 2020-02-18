@@ -1,5 +1,5 @@
 import store from './store/store';
-import { addNote } from './actions/actions';
+import { addNote, removeNote } from './actions/actions';
  
 // We use store.getState() to get our app state from the store
 
@@ -12,7 +12,7 @@ let addNoteContent = addNoteForm['content'];
 
 // ------ Redux ------
 function deleteNote(index) {
-  
+  store.dispatch(removeNote(index));
   // console.log(index);
 }
 
@@ -54,4 +54,6 @@ function setDeleteNoteButtonsEventListeners() {
 }
 
 // ------ Render the initial Notes ------
-renderNotes();
+store.subscribe(() => {
+  renderNotes();
+});
